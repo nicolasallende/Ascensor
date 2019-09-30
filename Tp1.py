@@ -1,15 +1,7 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
 """
 TP1 ANALISIS NUMERICO
 Problemas de busqueda de raices
 Creando un ascensor
-
-2 Cuatrimestre 2019
-
-Por:
-Eze
-
 """
 
 #Imports
@@ -20,19 +12,19 @@ import numpy as np #Manejo de arrays
 import matplotlib.pylab as plt #Rutinas gráficas
 
 ##Constantes
-fuerza = 10
+fuerza = 500 #aproximadamente, esto esta para chequear lo tire muy asi nomas!!!!
 
-masa_cabina = 1 #peso cabina
+masa_cabina = 300 #peso cabina
 
-masa_persona = 1 #peso prom personas
+masa_persona = 75 #peso prom personas
 
-numero_personas = 9 #a determinar
+numero_personas = 6 #a determinar
 
 masa = masa_cabina + masa_persona*numero_personas
 
-altura = 10 #altura de un piso
+altura = 2.60 #altura de un piso medida en metros
 
-acel = fuerza/masa
+acel_maxima = fuerza/masa #aceleracion maxima posible
 
 print('-------------------------------------')
 print('La fuerza que voy a usar es ', fuerza, '[N]')
@@ -41,7 +33,7 @@ print('La masa que voy a usar es ', masa, '[Kg]')
 print('-------------------------------------')
 print('La altura que voy a usar es ', altura, '[m]')
 print('-------------------------------------')
-print('La aceleracion maxima es ', acel, '[m/s^2]')
+print('La aceleracion maxima es ', acel_maxima, '[m/s^2]')
 print('-------------------------------------')
 
 ###Funciones posicion (f) y velocidad (f derivada ) y aceleracion (f derivada segunda)
