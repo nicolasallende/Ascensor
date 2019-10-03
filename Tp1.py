@@ -5,6 +5,7 @@ Creando un ascensor
 """
 
 #Imports
+import math
 import matplotlib
 matplotlib.use('Agg')
 
@@ -12,7 +13,7 @@ import numpy as np #Manejo de arrays
 import matplotlib.pylab as plt #Rutinas gráficas
 
 ##Constantes
-fuerza = 500 #aproximadamente, esto esta para chequear lo tire muy asi nomas!!!!
+fuerza = 640 #Fuerza medida en newtons
 
 masa_cabina = 300 #peso cabina
 
@@ -22,9 +23,12 @@ numero_personas = 6 #a determinar
 
 masa = masa_cabina + masa_persona*numero_personas
 
-altura = 2.60 #altura de un piso medida en metros
+altura = 3 #altura de un piso medida en metros
 
 acel_maxima = fuerza/masa #aceleracion maxima posible
+
+tiempo_final = math.sqrt(18*masa/fuerza)
+
 
 print('-------------------------------------')
 print('La fuerza que voy a usar es ', fuerza, '[N]')
@@ -37,29 +41,17 @@ print('La aceleracion maxima es ', acel_maxima, '[m/s^2]')
 print('-------------------------------------')
 
 ###Funciones posicion (f) y velocidad (f derivada ) y aceleracion (f derivada segunda)
-def posicion(x):
-    """
-    funcion para buscar raices del tp
+def posicion(t):
+    x = (fuerza/masa) * ( ( (t**2) /2 ) - ( (t**3) / (tiempo_final * 3) ) )
+    return x
 
-    OJO: Definida con constantes de afuera
-    """
-    return x #calcular
-
-def velocidad(x):
-    """
-    derivada de posicion
-
-    OJO: Definida con constantes de afuera
-    """
+def velocidad(t):
+    v = (fuerza/masa) * (  t  - ( (t**2) / tiempo_final ) )
     return None #calcular
 
-def aceleracion(x):
-    """
-    derivada segunda de posicion
-
-    OJO: Definida con constantes de afuera
-    """
-    return None #calcular
+def aceleracion(t):
+    ace = ( (fuerza/masa) * (  1  - ( (t*2) / tiempo_final ) ) )
+    return None
 
 ###Funciones busqueda de raices
 def fuerzaBruta(f, a, b, a_tol, n_max):
@@ -139,8 +131,7 @@ plt.grid(True)
 plt.savefig(nombre + '.png')
 plt.show()
 
-###Grafica de las funciones
-###Ver https://matplotlib.org
+
 ##print('--------------------')
 ##print('Graficando velocidad')
 ##print('-------------------')
