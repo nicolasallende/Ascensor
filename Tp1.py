@@ -7,6 +7,8 @@ Creando un ascensor
 #Imports
 import math
 import matplotlib
+from matplotlib import pyplot
+
 matplotlib.use('Agg')
 
 import numpy as np #Manejo de arrays
@@ -42,22 +44,67 @@ print('-------------------------------------')
 
 ###Funciones posicion (f) y velocidad (f derivada ) y aceleracion (f derivada segunda)
 def posicion(t):
-    x = (fuerza/masa) * ( ( (t**2) /2 ) - ( (t**3) / (tiempo_final * 3) ) )
+    x = (fuerza/masa) * (((t**2) /2) - ((t**3) / (tiempo_final * 3)))
     return x
 
 def velocidad(t):
-    v = (fuerza/masa) * (  t  - ( (t**2) / tiempo_final ) )
-    return None #calcular
+    v = (fuerza/masa) * (t  - ((t**2) / tiempo_final))
+    return v
 
 def aceleracion(t):
-    ace = ( (fuerza/masa) * (  1  - ( (t*2) / tiempo_final ) ) )
-    return None
+    a = ( (fuerza/masa) * (1  - ((t*2) / tiempo_final)))
+    return a
 
+
+
+#intento de grafico de posicion
+
+x = np.linspace(0, tiempo_final )
+y = posicion(x)
+plt.figure(figsize = (10,7))
+plt.plot(x, y)
+pyplot.axhline(0, color="black")
+pyplot.axvline(0, color="black")
+plt.xlabel('tiempo')
+plt.ylabel('altura')
+plt.title('Funcion de la posicion')
+plt.grid(True)
+plt.savefig('Grafico Posicion')
+
+#intento de grafico de velocidad
+
+x = np.linspace(0, tiempo_final ) #!!!!aca hay que cambiar el tiempofinal por otra cosa creo
+y = velocidad(x)
+plt.figure(figsize = (10,7))
+plt.plot(x, y)
+pyplot.axhline(0, color="black")
+pyplot.axvline(0, color="black")
+plt.xlabel('tiempo')
+plt.ylabel('vel')
+plt.title('Funcion de la velocidad')
+plt.grid(True)
+plt.savefig('Grafico Velocidad')
+
+#intento de grafico de aceleracion
+
+x = np.linspace(0, tiempo_final ) #!!!!aca hay que cambiar el tiempofinal por otra cosa creo
+y = aceleracion(x)
+plt.figure(figsize = (10,7))
+plt.plot(x, y)
+pyplot.axhline(0, color="black")
+pyplot.axvline(0, color="black")
+plt.xlabel('tiempo')
+plt.ylabel('aceleracion')
+plt.title('Funcion de la aceleracion')
+plt.grid(True)
+plt.savefig('Grafico Aceleracion')
+
+"""
 ###Funciones busqueda de raices
 def fuerzaBruta(f, a, b, a_tol, n_max):
-    """
+    
     Devolver (x0, delta), raiz y cota de error por metodo de fuerza bruta (horrible)
-    """
+    
     vector_x = np.linspace(a, b, n_max+1)
 
     minimo = abs(f(a))
@@ -75,9 +122,9 @@ def fuerzaBruta(f, a, b, a_tol, n_max):
 ###  return x, delta, i+1
 
 def secante(f, x0, x1, a_tol, n_max):
-    """
+   
     Devolver (x, delta), raiz y cota de error por metodo de la secante
-    """
+   
     delta = 0
 
     print('{0:^4} {1:^17} {2:^17} {3:^17}'.format('i', 'x', 'x_-1', 'delta'))
@@ -211,4 +258,4 @@ print('')
 ##print('delta = ' +str(delta))
 ##print('n_ite = ' +str(n_iter))
 ##print('')
-##
+"""
